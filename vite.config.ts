@@ -1,6 +1,6 @@
-import vue from "@vitejs/plugin-vue";
-import path from "path";
+import path from "node:path";
 import { type ConfigEnv, defineConfig, loadEnv, type UserConfig } from "vite";
+import { configPlugins } from "./src/plugins/index";
 
 const pathSrc = path.resolve(__dirname, "src");
 
@@ -10,7 +10,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 	const env = loadEnv(mode, process.cwd());
 
 	return {
-		plugins: [vue()],
+		plugins: configPlugins(),
 
 		css: {
 			preprocessorOptions: {
@@ -30,7 +30,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 		server: {
 			host: true,
 			cors: true,
-			open: true,
 			// open: true,
 			port: Number(env.VITE_APP_PORT),
 			// 代理
