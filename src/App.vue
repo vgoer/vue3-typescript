@@ -2,11 +2,9 @@
 </script>
 
 <template>
-      <el-button type="success"><i-ep-SuccessFilled />Success</el-button>
+    <RouterView></RouterView>
 </template>
 
 <style scoped lang="scss">
-  h3{
-    background-color: $bg-color;
-  }
+
 </style>
