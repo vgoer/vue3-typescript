@@ -1,9 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
-// reset css
-import "@/assets/css/reset.css";
-
 const app = createApp(App);
 
 // router
@@ -21,5 +18,10 @@ app.use(pinia);
 // 安装国际化
 import { installI18n } from "@/plugins/i18n";
 installI18n(app);
+
+// 暗黑
+import "element-plus/theme-chalk/dark/css-vars.css";
+// reset css
+import "@/assets/css/reset.css";
 
 app.mount("#app");
