@@ -1,33 +1,22 @@
 <script setup lang="ts">
-import { useUserStore } from "@/stores/user";
-import { storeToRefs } from "pinia";
+import { type Reactive, reactive } from "vue";
+import { useUserStoreHook } from "@/stores/admin";
 
-const userStore = useUserStore();
-// 响应式
-const { isAuthenticated } = storeToRefs(userStore);
-const { name, email } = storeToRefs(userStore);
+const loginObj: Reactive<any> = reactive({
+	phone: "18888888888",
+	password: "123456",
+});
 
-const handleLogin = async () => {
-	await userStore.login({
-		id: "123",
-		name: "John Doe",
-		email: "john@example.com",
-		token: "abc123",
-	});
-};
+// userStore
+const userStore = useUserStoreHook();
 
-const handleLogout = () => {
-	userStore.logout();
+const login = () => {
+	userStore.loginStore(loginObj);
+	// 获取到token了
+	console.log(userStore.token); // Bearer tokenxxxxx
 };
 </script>
 
 <template>
-    <h3>{{ name + email }}</h3>
-    <div v-if="isAuthenticated">
-        Welcome, {{ userStore.name }}!
-        <button @click="handleLogout">Logout</button>
-    </div>
-    <div v-else>
-        <button @click="handleLogin">Login</button>
-    </div>
+    <el-button type="primary" @click="login">登录</el-button>
 </template>

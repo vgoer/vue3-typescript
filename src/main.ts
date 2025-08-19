@@ -18,4 +18,8 @@ const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 app.use(pinia);
 
+// 安装国际化
+import { installI18n } from "@/plugins/i18n";
+installI18n(app);
+
 app.mount("#app");
